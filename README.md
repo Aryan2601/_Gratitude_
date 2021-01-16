@@ -1,3 +1,1 @@
 # Gratitude
-
-### About

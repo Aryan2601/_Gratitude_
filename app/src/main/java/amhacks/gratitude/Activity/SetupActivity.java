@@ -11,6 +11,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore.Images;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -46,6 +47,7 @@ public class SetupActivity extends AppCompatActivity {
     private EditText AgeET, FullNameET, PhoneET;
     private ImageView AgeTick, ProfileImageView;
     private Spinner GenderSpinner;
+    private TextView up_photo;
     private Button SaveButton;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
@@ -74,7 +76,7 @@ public class SetupActivity extends AppCompatActivity {
         GenderSpinner = (Spinner) findViewById(R.id.setup_gender_et);
         ProfileImageView = (ImageView) findViewById(R.id.setup_profile_image);
         SaveButton = (Button) findViewById(R.id.setup_save_button);
-
+        up_photo = (TextView) findViewById(R.id.up_photo_tv) ;
 
 
 
@@ -107,8 +109,10 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void selectImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                Images.Media.INTERNAL_CONTENT_URI);
+
+       intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 1);
     }
@@ -120,6 +124,7 @@ public class SetupActivity extends AppCompatActivity {
         {
             imageUri = data.getData();
             ProfileImageView.setImageURI(imageUri);
+            up_photo.setVisibility(View.INVISIBLE);
             uploadImage();
 
         }
