@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1097913929387",
+    "project_id": "gratitude-f2917",
+    "storage_bucket": "gratitude-f2917.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097913929387:android:193f407ee386726df171ee",
+        "android_client_info": {
+          "package_name": "amhacks.gratitude"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097913929387-v62dpoq8pr4ggqmrsorhsipuk94j96me.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyYrW9dTxLnzXzIN5NtI-wBYHkEpM2ucg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097913929387-v62dpoq8pr4ggqmrsorhsipuk94j96me.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
