@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.content.res.AppCompatResources;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +26,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
+import com.facebook.login.Login;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,13 +49,14 @@ import amhacks.gratitude.R;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText EmailET, PasswordET, ConfPasswordET;
-    private Button LoginButton, LoginFBButton;
+    private Button LoginButton;
     private TextView ForgotPasswordLink;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
     private String email, password, confirm_password, currentUserID;
     private CallbackManager callbackManager;
     private LoginButton loginButton;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +64,12 @@ public class LoginActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_login);
 
+        progressDialog = new ProgressDialog(this);
+
 
         loginButton = findViewById(R.id.login_fb_button);
+
+
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -71,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 Log.d("log","Login Successful!");
                 handleFacebookAccessToken(loginResult.getAccessToken());
+                mAuth.signInWithCustomToken(loginResult.getAccessToken().toString());
                 Intent setupIntent = new Intent(LoginActivity.this, SetupActivity.class);
                 setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(setupIntent);
@@ -93,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+
         firestore = FirebaseFirestore.getInstance();
 
 
@@ -100,56 +111,58 @@ public class LoginActivity extends AppCompatActivity {
         PasswordET = (EditText) findViewById(R.id.passwordLogin);
         ConfPasswordET = (EditText) findViewById(R.id.confirmPasswordLogin);
         LoginButton = (Button) findViewById(R.id.login_button);
-        LoginFBButton = (Button) findViewById(R.id.login_fb_button);
         ForgotPasswordLink = (TextView) findViewById(R.id.forgotPasswordLink);
 
         EmailET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @SuppressLint("UseCompatTextViewDrawableApis")
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
                 {
-                    EmailET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
-                    EmailET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
+                    EmailET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
+                    EmailET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
                 }
                 else
                 {
-                    EmailET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
-                    EmailET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
+                    EmailET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
+                    EmailET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
                 }
             }
         });
 
         PasswordET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @SuppressLint("UseCompatTextViewDrawableApis")
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
                 {
-                    PasswordET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
-                    PasswordET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
+                    PasswordET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
+                    PasswordET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
                 }
                 else
                 {
-                    PasswordET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
-                    PasswordET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
+                    PasswordET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
+                    PasswordET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
                 }
             }
         });
 
         ConfPasswordET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @SuppressLint("UseCompatTextViewDrawableApis")
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
                 {
-                    ConfPasswordET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
-                    ConfPasswordET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
+                    ConfPasswordET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
+                    ConfPasswordET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
                 }
                 else
                 {
-                    ConfPasswordET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
-                    ConfPasswordET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
+                    ConfPasswordET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
+                    ConfPasswordET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
                 }
             }
         });
@@ -191,6 +204,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     void login()
     {
+
         email = EmailET.getText().toString();
         password = PasswordET.getText().toString();
 
@@ -200,13 +214,20 @@ public class LoginActivity extends AppCompatActivity {
         }
         else
         {
+            progressDialog.setTitle("Please wait");
+            progressDialog.setMessage("We are authenticating your credentials");
+            progressDialog.show();
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
+                                progressDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, "Authenticated successfully.", Toast.LENGTH_SHORT).show();
+                                Intent dashIntent = new Intent(LoginActivity.this, Dashboard.class);
+                                dashIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(dashIntent);
                             }
                             else
                             {
@@ -216,6 +237,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 catch (FirebaseAuthInvalidUserException invalidEmail)
                                 {
+                                    progressDialog.dismiss();
                                     Toast.makeText(LoginActivity.this, "We can't find your account. Please register", Toast.LENGTH_SHORT).show();
                                     ConfPasswordET.setVisibility(View.VISIBLE);
                                     ForgotPasswordLink.setVisibility(View.INVISIBLE);
@@ -229,9 +251,11 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 catch (FirebaseAuthInvalidCredentialsException invalidCredentials)
                                 {
+                                    progressDialog.dismiss();
                                     Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
                                 }
                                 catch (Exception e) {
+                                    progressDialog.dismiss();
                                     e.printStackTrace();
                                 }
                             }
@@ -243,12 +267,14 @@ public class LoginActivity extends AppCompatActivity {
 
     void register()
     {
+        progressDialog.setMessage("We are registering your account");
         email = EmailET.getText().toString();
         password = PasswordET.getText().toString();
         confirm_password = ConfPasswordET.getText().toString();
 
         if (password.equals(confirm_password))
         {
+            progressDialog.show();
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -256,23 +282,25 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful())
                             {
                                 mAuth.signInWithEmailAndPassword(email, password);
+
                                 currentUserID  = mAuth.getCurrentUser().getUid().toString();
 
                                 HashMap<String, Object> hashMap = new HashMap<>();
                                 hashMap.put("email",email);
 
-                                firestore.collection("Users")
-                                        .add(hashMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                firestore.collection("Users").document(currentUserID).set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
-                                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                                    public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful())
                                         {
+                                            progressDialog.dismiss();
                                             Intent setupIntent = new Intent(LoginActivity.this, SetupActivity.class);
                                             setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(setupIntent);
                                         }
                                         else
                                         {
+                                            progressDialog.dismiss();
                                             String err = task.getException().getMessage();
                                             Toast.makeText(LoginActivity.this, err, Toast.LENGTH_SHORT).show();
                                         }
@@ -283,6 +311,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else
                             {
+                                progressDialog.dismiss();
                                 String err = task.getException().getMessage();
                                 Toast.makeText(LoginActivity.this, err, Toast.LENGTH_SHORT).show();
                             }
@@ -292,6 +321,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else
         {
+            progressDialog.dismiss();
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
         }
     }

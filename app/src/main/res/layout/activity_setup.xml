@@ -70,20 +70,42 @@
             android:orientation="vertical"
             android:padding="20dp"
             android:gravity="center"
+            android:visibility="gone"
 
             >
+            <LinearLayout
+                android:id="@+id/setup_photo_llt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:src="@drawable/profile_picture"
+                android:id="@+id/setup_profile_image"
+                android:backgroundTint="@color/orange"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Photo"
+                />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/setup_fullname_et"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:inputType="number"
                 android:hint="Full Name"
                 android:drawableLeft="@drawable/person_icon"
                 android:drawablePadding="10dp"
                 android:padding="10dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/edit_text_style"
                 />
+
 
             <Spinner
                 android:id="@+id/setup_gender_et"

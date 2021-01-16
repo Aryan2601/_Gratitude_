@@ -21,20 +21,20 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="240dp"
                 android:src="@drawable/img1"
                 android:scaleType="centerInside"
                 />
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text=" Welcome"
-                android:textColor="@color/orange"
-                android:textSize="60sp"
-                android:fontFamily="@font/billabong"
+                android:layout_height="60dp"
                 android:layout_marginLeft="25dp"
-                />
+                android:fontFamily="@font/billabong"
+                android:text=" Welcome"
+                android:textAlignment="center"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="60sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,10 +45,10 @@
                 <EditText
                     android:id="@+id/emailAddressLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="53dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="30dp"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/darker_gray"
                     android:textColorHint="@color/darker_gray"
@@ -62,9 +62,9 @@
                 <EditText
                     android:id="@+id/passwordLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_height="53dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/darker_gray"
                     android:drawableTint="@color/darker_gray"
@@ -93,39 +93,74 @@
                     android:textColorHint="@color/darker_gray"
                     android:padding="10dp"
                     android:background="@drawable/edit_text_style"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/forgotPasswordLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Forgot Password"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="30dp"
+                        android:textColor="@color/darker_gray"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        />
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/forgotPasswordLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Forgot Password"
-                    android:layout_marginLeft="240dp"
-                    android:textColor="@color/darker_gray"
-                    android:layout_marginTop="10dp"
-                    android:textStyle="bold"
-                    />
 
                 <Button
                     android:id="@+id/login_button"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="53dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/button_style1"
                     android:text="Login"
                     android:textSize="16sp"
                     android:backgroundTint="@android:color/holo_orange_light"/>
-
-                <com.facebook.login.widget.LoginButton
-                    android:id="@+id/login_fb_button"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textSize="24sp"
-                    android:padding="16sp"
-                    android:text="Login with Facebook"
-                    android:layout_marginTop="30dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:padding="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/edit_text_style"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Login with social account"
+                        android:layout_marginLeft="40dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="15dp"
+                        />
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_fb_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="25dp"
+                        android:background="@drawable/button_style1"
+                        android:layout_marginRight="25dp"
+                        android:padding="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:textSize="15sp"
+                        android:drawableTint="@android:color/white"
+                        android:drawableLeft="@drawable/fb_logo"
+                        android:backgroundTint="@android:color/holo_blue_dark"
+                        android:text="Login with Facebook"
+                        android:layout_marginTop="20dp" />
+
+                </LinearLayout>
+
+
 
             </LinearLayout>
 

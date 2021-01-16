@@ -9,13 +9,15 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import amhacks.gratitude.R;
 
 public class IntroActivity extends AppCompatActivity {
 
     ImageView logo,splashImg;
     TextView appName;
-   // LottieAnimationView lottieAnimationView;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,8 @@ public class IntroActivity extends AppCompatActivity {
 
         splashImg = findViewById(R.id.image);
 
-       // lottieAnimationView = findViewById(R.id.lottie);
+        mAuth = FirebaseAuth.getInstance();
+
 
         splashImg.animate().translationY(-2400).setDuration(1000).setStartDelay(4000);
         logo.animate().translationY(2200).setDuration(1000).setStartDelay(4000);
@@ -41,6 +44,7 @@ public class IntroActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                checkLogin();
                 Intent loginIntent = new Intent(IntroActivity.this, LoginActivity.class);
                 loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(loginIntent);
@@ -56,8 +60,19 @@ public class IntroActivity extends AppCompatActivity {
 
             }
         });;
-    //    lottieAnimationView.animate().translationY(1800).setDuration(1000).setStartDelay(4000);
 
 
+
+    }
+
+
+    void checkLogin() {
+
+        if (mAuth.getCurrentUser() != null)
+        {
+            Intent dashIntent = new Intent(IntroActivity.this, Dashboard.class);
+            dashIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(dashIntent);
+        }
     }
 }
