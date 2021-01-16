@@ -1,5 +1,6 @@
 package amhacks.gratitude.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -9,20 +10,44 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
 import org.w3c.dom.Text;
 
 import amhacks.gratitude.R;
 
 public class Dashboard extends AppCompatActivity {
     private RelativeLayout helpSeekerSwitch, helperSwitch;
-    private LinearLayout helperLayout, helpSeekerLayout;
-    private TextView helpSeekerTxt, helperTxt;
-    private String user_type;
+    private LinearLayout helperLayout, helpSeekerLayout, profileLayout;
+    private TextView helpSeekerTxt, helperTxt, usernameTxt;
+    private String user_type, currentUserID, fullname;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid().toString();
+
+        firestore = FirebaseFirestore.getInstance();
+
+        firestore.collection("Users").document(currentUserID).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null)
+                {
+                    fullname = value.get("fullname").toString();
+                    usernameTxt.setText(fullname);
+                }
+            }
+        });
 
         helperSwitch = (RelativeLayout) findViewById(R.id.helper_switch);
         helpSeekerSwitch = (RelativeLayout) findViewById(R.id.help_seeker_switch);
@@ -30,6 +55,8 @@ public class Dashboard extends AppCompatActivity {
         helpSeekerTxt = (TextView) findViewById(R.id.help_seeker_txt);
         helperLayout = (LinearLayout) findViewById(R.id.helper_body);
         helpSeekerLayout = (LinearLayout) findViewById(R.id.help_seeker_body);
+        profileLayout = (LinearLayout) findViewById(R.id.profile_llt);
+        usernameTxt = (TextView) findViewById(R.id.username_txt);
 
         helpSeekerSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
