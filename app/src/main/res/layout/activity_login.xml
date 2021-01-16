@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".Activity.LoginActivity"
     android:background="@color/white"
     >
 
@@ -21,26 +21,25 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_height="250dp"
                 android:src="@drawable/img1"
                 android:scaleType="centerInside"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:textSize="37sp"
-                android:padding="5dp"
-                android:layout_marginLeft="20dp"
+                android:textAlignment="center"
+                android:text=" Welcome"
+                android:textColor="@color/orange"
+                android:textSize="60sp"
+                android:fontFamily="@font/billabong"
+                android:layout_marginLeft="25dp"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
                 >
 
                 <EditText
@@ -49,9 +48,9 @@
                     android:layout_height="55dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darker_gray"
                     android:textColorHint="@color/darker_gray"
                     android:hint="Email address"
                     android:drawableLeft="@drawable/email_icon"
@@ -67,7 +66,7 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginTop="20dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darker_gray"
                     android:drawableTint="@color/darker_gray"
                     android:textColorHint="@color/darker_gray"
                     android:drawableLeft="@drawable/lock_icon"
@@ -85,10 +84,13 @@
                     android:layout_marginRight="25dp"
                     android:visibility="gone"
                     android:layout_marginTop="20dp"
+                    android:textColor="@color/darker_gray"
                     android:drawableLeft="@drawable/lock_icon"
                     android:drawablePadding="10dp"
+                    android:drawableTint="@color/darker_gray"
                     android:inputType="textPassword"
                     android:hint="Confirm Password"
+                    android:textColorHint="@color/darker_gray"
                     android:padding="10dp"
                     android:background="@drawable/edit_text_style"/>
 
@@ -110,22 +112,20 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginTop="30dp"
-                    android:text="LOGIN"
+                    android:text="Login"
                     android:textSize="16sp"
                     android:backgroundTint="@android:color/holo_orange_light"/>
 
-                <Button
+                <com.facebook.login.widget.LoginButton
                     android:id="@+id/login_fb_button"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="65dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="30dp"
-                    android:backgroundTint="@android:color/holo_blue_dark"
-                    android:drawableLeft="@drawable/fb_logo"
-                    android:drawableTint="@android:color/white"
-                    android:text="Login with Facebook"/>
+                    android:textSize="24sp"
+                    android:padding="16sp"
+                    android:text="Login with Facebook"
+                    android:layout_marginTop="30dp" />
 
             </LinearLayout>
 

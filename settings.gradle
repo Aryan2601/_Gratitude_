@@ -1,2 +1,3 @@
+include ':facebook-login'
 include ':app'
 rootProject.name = "Gratitude"

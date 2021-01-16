@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroActivity">
+    tools:context=".Activity.IntroActivity"
+    android:background="@color/orange"
+    >
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
-        android:layout_height="900dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:src="@drawable/bg1_style"
+        />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="500dp"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:src="@drawable/helpinghand"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,32 +31,28 @@
         app:layout_constraintTop_toBottomOf="@+id/app_name"
         app:layout_constraintVertical_bias="1.0" />
 
-    <ImageView
+    <TextView
         android:id="@+id/app_name"
-        android:layout_width="215dp"
-        android:layout_height="109dp"
-        android:layout_marginTop="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="400dp"
-        android:src="@drawable/gratitudesign"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@id/logo"
+        android:text="Gratitude"
+        android:fontFamily="@font/billabong"
+        android:textColor="@color/white"
+        android:textSize="70sp"
+        android:layout_centerHorizontal="true" />
 
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <com.airbnb.lottie.LottieAnimationView
+    <!--<com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
         app:lottie_autoPlay="true"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        app:layout_constraintVertical_bias="0"
+        android:layout_height="175dp"
+        android:layout_below="@id/logo"
         app:lottie_rawRes="@raw/uploading"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name"/>
+        android:layout_marginTop="20dp"
+        />-->
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

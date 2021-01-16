@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Gratitude</string>
+    <string name="facebook_app_id">407261230533291</string>
+    <string name="fb_login_protocol_scheme">fb407261230533291</string>
+    <string-array name="gender_list">
+        <item>Select Gender</item>
+        <item name="Male">Male</item>
+        <item name="Female">Female</item>
+        <item name="Other">Other</item>
+    </string-array>
 </resources>

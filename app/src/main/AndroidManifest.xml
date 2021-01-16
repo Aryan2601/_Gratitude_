@@ -4,26 +4,33 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gratitude">
-        <activity android:name=".IntroActivity">
+        <activity android:name=".Activity.SetupActivity"></activity>
+        <activity android:name=".Activity.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.LoginActivity"></activity>
+        <activity android:name=".Activity.MainActivity"></activity>
 
-        <activity android:name=".LoginActivity">
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
 
-            
-        </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
 
-        </activity>
+
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

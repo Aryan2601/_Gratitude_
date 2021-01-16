@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SetupActivity"
+    android:background="@drawable/bg1_style"
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+        <LinearLayout
+            android:id="@+id/age_llt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="25dp"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How old are you ?"
+                android:fontFamily="@font/billabong"
+                android:textSize="35sp"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <EditText
+                    android:id="@+id/setup_age_et"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    />
+                <ImageView
+                    android:id="@+id/age_tick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/tick_icon"
+                    android:layout_marginLeft="20dp"
+                    android:padding="5dp"
+                    android:scaleType="centerCrop"
+                    android:backgroundTint="@android:color/holo_green_light"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/basic_llt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center"
+
+            >
+
+            <EditText
+                android:id="@+id/setup_fullname_et"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:hint="Full Name"
+                android:drawableLeft="@drawable/person_icon"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_style"
+                />
+
+            <Spinner
+                android:id="@+id/setup_gender_et"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Gender"
+                android:entries="@array/gender_list"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_style"
+                />
+
+            <EditText
+                android:id="@+id/setup_phone_et"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="phone"
+                android:hint="Phone"
+                android:drawableLeft="@drawable/phone_icon"
+                android:drawablePadding="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_style"
+                />
+
+            <Button
+                android:id="@+id/setup_save_button"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="20dp"
+                android:text="save profile"
+                />
+
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
