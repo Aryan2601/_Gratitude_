@@ -113,7 +113,7 @@
                 <Button
                     android:id="@+id/login_button"
                     android:layout_width="match_parent"
-                    android:layout_height="53dp"
+                    android:layout_height="55dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginTop="25dp"
@@ -128,8 +128,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:padding="8dp"
-                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
                     android:background="@drawable/edit_text_style"
                     >
 
@@ -142,21 +141,19 @@
                         android:textStyle="bold"
                         android:layout_marginTop="15dp"
                         />
-                    <com.facebook.login.widget.LoginButton
+                    <Button
                         android:id="@+id/login_fb_button"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="65dp"
                         android:layout_marginLeft="25dp"
-                        android:background="@drawable/button_style1"
                         android:layout_marginRight="25dp"
                         android:padding="10dp"
-                        android:layout_marginBottom="15dp"
                         android:textSize="15sp"
                         android:drawableTint="@android:color/white"
                         android:drawableLeft="@drawable/fb_logo"
                         android:backgroundTint="@android:color/holo_blue_dark"
                         android:text="Login with Facebook"
-                        android:layout_marginTop="20dp" />
+                        android:layout_marginTop="15dp" />
 
                 </LinearLayout>
 

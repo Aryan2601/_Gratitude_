@@ -11,11 +11,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gratitude">
-        <activity android:name=".Activity.Dashboard"></activity>
-        <activity android:name=".Activity.SetupActivity" />
         <activity android:name=".Activity.ReadyToHelpActivity"></activity>
+        <activity android:name=".Activity.SetupActivity" />
         <activity android:name=".Activity.IntroActivity">
-        
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
