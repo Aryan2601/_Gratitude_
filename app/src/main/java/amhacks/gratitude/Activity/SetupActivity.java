@@ -61,7 +61,7 @@ public class SetupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setup);
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid().toString();
-
+        System.out.println(currentUserID);
         firestore = FirebaseFirestore.getInstance();
         profileStoreRef = FirebaseStorage.getInstance().getReference("Profile Images");
 
@@ -192,7 +192,7 @@ public class SetupActivity extends AppCompatActivity {
                             {
                                 Toast.makeText(SetupActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
 
-                                Intent mainIntent = new Intent(SetupActivity.this, MainActivity.class);
+                                Intent mainIntent = new Intent(SetupActivity.this, Dashboard.class);
                                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(mainIntent);
                             }

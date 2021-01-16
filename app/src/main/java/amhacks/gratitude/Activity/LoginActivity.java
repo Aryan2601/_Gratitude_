@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.content.res.AppCompatResources;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -24,6 +26,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
+import com.facebook.login.Login;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,7 +49,7 @@ import amhacks.gratitude.R;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText EmailET, PasswordET, ConfPasswordET;
-    private Button LoginButton, LoginFBButton;
+    private Button LoginButton;
     private TextView ForgotPasswordLink;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
@@ -65,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         loginButton = findViewById(R.id.login_fb_button);
+
+
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -106,56 +111,58 @@ public class LoginActivity extends AppCompatActivity {
         PasswordET = (EditText) findViewById(R.id.passwordLogin);
         ConfPasswordET = (EditText) findViewById(R.id.confirmPasswordLogin);
         LoginButton = (Button) findViewById(R.id.login_button);
-        LoginFBButton = (Button) findViewById(R.id.login_fb_button);
         ForgotPasswordLink = (TextView) findViewById(R.id.forgotPasswordLink);
 
         EmailET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @SuppressLint("UseCompatTextViewDrawableApis")
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
                 {
-                    EmailET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
-                    EmailET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
+                    EmailET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
+                    EmailET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
                 }
                 else
                 {
-                    EmailET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
-                    EmailET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
+                    EmailET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
+                    EmailET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
                 }
             }
         });
 
         PasswordET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @SuppressLint("UseCompatTextViewDrawableApis")
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
                 {
-                    PasswordET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
-                    PasswordET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
+                    PasswordET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
+                    PasswordET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
                 }
                 else
                 {
-                    PasswordET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
-                    PasswordET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
+                    PasswordET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
+                    PasswordET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
                 }
             }
         });
 
         ConfPasswordET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @SuppressLint("UseCompatTextViewDrawableApis")
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
                 {
-                    ConfPasswordET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
-                    ConfPasswordET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.orange));
+                    ConfPasswordET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
+                    ConfPasswordET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.orange));
                 }
                 else
                 {
-                    ConfPasswordET.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
-                    ConfPasswordET.setCompoundDrawableTintList(getApplicationContext().getResources().getColorStateList(R.color.darker_gray));
+                    ConfPasswordET.setBackgroundTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
+                    ConfPasswordET.setCompoundDrawableTintList(AppCompatResources.getColorStateList(getApplicationContext(), R.color.darker_gray));
                 }
             }
         });
@@ -218,6 +225,9 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 progressDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, "Authenticated successfully.", Toast.LENGTH_SHORT).show();
+                                Intent dashIntent = new Intent(LoginActivity.this, Dashboard.class);
+                                dashIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(dashIntent);
                             }
                             else
                             {
