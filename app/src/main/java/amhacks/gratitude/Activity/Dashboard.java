@@ -133,24 +133,36 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 billsFormLayout.setVisibility(View.VISIBLE);
+                groceryFormLayout.setVisibility(View.GONE);
+                emergencyFormLayout.setVisibility(View.GONE);
+                orderFormLayout.setVisibility(View.GONE);
             }
         });
         orderFormLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                billsFormLayout.setVisibility(View.GONE);
+                groceryFormLayout.setVisibility(View.GONE);
+                emergencyFormLayout.setVisibility(View.GONE);
                 orderFormLayout.setVisibility(View.VISIBLE);
             }
         });
         groceryFormLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                billsFormLayout.setVisibility(View.GONE);
                 groceryFormLayout.setVisibility(View.VISIBLE);
+                emergencyFormLayout.setVisibility(View.GONE);
+                orderFormLayout.setVisibility(View.GONE);
             }
         });
         emergencyFormLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                billsFormLayout.setVisibility(View.GONE);
+                groceryFormLayout.setVisibility(View.GONE);
                 emergencyFormLayout.setVisibility(View.VISIBLE);
+                orderFormLayout.setVisibility(View.GONE);
             }
         });
 
