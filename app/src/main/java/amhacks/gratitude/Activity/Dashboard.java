@@ -123,6 +123,7 @@ public class Dashboard extends AppCompatActivity {
                     hashMap.put("desc",desc);
                     hashMap.put("status", "pending");
                     hashMap.put("poster", currentUserID);
+                    hashMap.put("type","BILL");
                     hashMap.put("poster_location",address);
 
                     firestore.collection("Posts").document().set(hashMap)
