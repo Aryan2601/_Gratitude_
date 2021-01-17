@@ -40,9 +40,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Dashboard extends AppCompatActivity {
     private RelativeLayout helpSeekerSwitch, helperSwitch;
     private LinearLayout helperLayout, helpSeekerLayout, profileLayout;
-    private LinearLayout billsFormLayout;
+    private LinearLayout billsFormLayout, groceryFormLayout, emergencyFormLayout, orderFormLayout;
     private LinearLayout billsLayout;
-    private TextView helpSeekerTxt, helperTxt, usernameTxt, billsTimeTxt;
+    private TextView helpSeekerTxt, helperTxt, usernameTxt, billsTimeTxt,emergencyTimeTxt, groceryTimeTxt,orderTimeTxt;
     private String user_type, currentUserID, fullname, dest_time, address;
     private FirebaseAuth mAuth;
     private CircleImageView profileView;
@@ -52,6 +52,11 @@ public class Dashboard extends AppCompatActivity {
     private RecyclerView requestsView;
     private EditText DescET;
     private FirestoreRecyclerAdapter adapter;
+
+    private TimePicker groceryTimePicker, foodTimePicker, emergencyTimePicker;
+    private Button postGrocery, postEmergency, postOrder;
+
+    private EditText groceryET, emergencyET, orderET;
 
 
     @Override
@@ -85,10 +90,30 @@ public class Dashboard extends AppCompatActivity {
         profileLayout = (LinearLayout) findViewById(R.id.profile_llt);
         usernameTxt = (TextView) findViewById(R.id.username_txt);
         billsTimePicker = (TimePicker) findViewById(R.id.time_picker_bills);
+        groceryTimePicker = (TimePicker) findViewById(R.id.time_picker_grocery);
+        emergencyTimePicker = (TimePicker) findViewById(R.id.time_picker_emergency);
+        foodTimePicker = (TimePicker) findViewById(R.id.time_picker_order);
+
         billsTimeTxt = (TextView) findViewById(R.id.time_txt_bills);
+        groceryTimeTxt = (TextView) findViewById(R.id.time_txt_grocery);
+        emergencyTimeTxt = (TextView) findViewById(R.id.time_txt_emergency);
+        orderTimeTxt = (TextView) findViewById(R.id.time_txt_order);
+
         postBills = (Button) findViewById(R.id.post_request_bills);
+        postEmergency = (Button) findViewById(R.id.post_request_emergency);
+        postGrocery = (Button) findViewById(R.id.post_request_grocery);
+        postOrder = (Button) findViewById(R.id.post_request_order);
+
         DescET = (EditText) findViewById(R.id.desc_bills);
         requestsView = (RecyclerView)  findViewById(R.id.requests_recycler_view);
+        groceryET = (EditText) findViewById(R.id.desc_grocery);
+        orderET = (EditText) findViewById(R.id.desc_order);
+        emergencyET = (EditText) findViewById(R.id.desc_emergency);
+
+        groceryFormLayout = (LinearLayout)findViewById(R.id.grocery_form_llt);
+        emergencyFormLayout = (LinearLayout)findViewById(R.id.emergency_form_llt);
+        orderFormLayout = (LinearLayout)findViewById(R.id.order_form_llt);
+
 
         billsTimeTxt.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -107,6 +132,24 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 billsFormLayout.setVisibility(View.VISIBLE);
+            }
+        });
+        orderFormLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderFormLayout.setVisibility(View.VISIBLE);
+            }
+        });
+        groceryFormLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                groceryFormLayout.setVisibility(View.VISIBLE);
+            }
+        });
+        emergencyFormLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emergencyFormLayout.setVisibility(View.VISIBLE);
             }
         });
 
@@ -160,6 +203,157 @@ public class Dashboard extends AppCompatActivity {
 
             }
         });
+        postGrocery.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                String desc = groceryET.getText().toString();
+                dest_time = groceryTimePicker.getHour() + ":" + groceryTimePicker.getMinute();
+
+                if (TextUtils.isEmpty(desc) || TextUtils.isEmpty(dest_time))
+                {
+                    Toast.makeText(Dashboard.this, "Please fill all the details", Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("time",dest_time);
+                    hashMap.put("desc",desc);
+                    hashMap.put("status", "pending");
+                    hashMap.put("poster", currentUserID);
+                    hashMap.put("type","GROCERY");
+                    hashMap.put("poster_location",address);
+
+                    firestore.collection("Posts").document().set(hashMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @RequiresApi(api = Build.VERSION_CODES.P)
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(Dashboard.this, "Posted successfully", Toast.LENGTH_SHORT).show();
+                                        groceryTimePicker.resetPivot();
+                                        groceryET.setText(null);
+                                        groceryFormLayout.setVisibility(View.GONE);
+                                    }
+                                    else
+                                    {
+                                        String err = task.getException().getMessage();
+                                        Toast.makeText(Dashboard.this, err, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+
+
+
+
+
+            }
+        });
+        postOrder.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                String desc = orderET.getText().toString();
+                dest_time = foodTimePicker.getHour() + ":" + foodTimePicker.getMinute();
+
+                if (TextUtils.isEmpty(desc) || TextUtils.isEmpty(dest_time))
+                {
+                    Toast.makeText(Dashboard.this, "Please fill all the details", Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("time",dest_time);
+                    hashMap.put("desc",desc);
+                    hashMap.put("status", "pending");
+                    hashMap.put("poster", currentUserID);
+                    hashMap.put("type","FOOD");
+                    hashMap.put("poster_location",address);
+
+                    firestore.collection("Posts").document().set(hashMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @RequiresApi(api = Build.VERSION_CODES.P)
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(Dashboard.this, "Posted successfully", Toast.LENGTH_SHORT).show();
+                                        foodTimePicker.resetPivot();
+                                        orderET.setText(null);
+                                        orderFormLayout.setVisibility(View.GONE);
+                                    }
+                                    else
+                                    {
+                                        String err = task.getException().getMessage();
+                                        Toast.makeText(Dashboard.this, err, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+
+
+
+
+
+            }
+        });
+        postEmergency.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                String desc = emergencyET.getText().toString();
+                dest_time = emergencyTimePicker.getHour() + ":" + emergencyTimePicker.getMinute();
+
+                if (TextUtils.isEmpty(desc) || TextUtils.isEmpty(dest_time))
+                {
+                    Toast.makeText(Dashboard.this, "Please fill all the details", Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("time",dest_time);
+                    hashMap.put("desc",desc);
+                    hashMap.put("status", "pending");
+                    hashMap.put("poster", currentUserID);
+                    hashMap.put("type","EMERGENCY");
+                    hashMap.put("poster_location",address);
+
+                    firestore.collection("Posts").document().set(hashMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @RequiresApi(api = Build.VERSION_CODES.P)
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(Dashboard.this, "Posted successfully", Toast.LENGTH_SHORT).show();
+                                        emergencyTimePicker.resetPivot();
+                                        emergencyET.setText(null);
+                                        emergencyFormLayout.setVisibility(View.GONE);
+                                    }
+                                    else
+                                    {
+                                        String err = task.getException().getMessage();
+                                        Toast.makeText(Dashboard.this, err, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+
+
+
+
+
+            }
+        });
+
 
 
 
