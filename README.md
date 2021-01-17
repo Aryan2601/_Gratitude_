@@ -9,8 +9,12 @@
 
 ![Screenshot from 2021-01-17 17-07-37](https://user-images.githubusercontent.com/56226813/104839470-5fa0de80-58e7-11eb-9a19-2457422d54de.png)
 
-
-### Steps for Using our app :
+<h3> Steps for using this app </h3>
+<ul>
+  <li>Clone this repo using 'git clone'</li>
+  <li>Make sure usb debugging and installing is turned on</li>
+  <li>Once all dependencies are installed then click on run and that's it</li>
+</ul>
 
 
 ### Resources and Languages :
