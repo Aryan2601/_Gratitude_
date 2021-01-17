@@ -16,9 +16,12 @@
   <li>Once all dependencies are installed then click on run and that's it</li>
 </ul>
 
-
-### Resources and Languages :
-
+<h3>Resources</h3>
+<ul>
+  <li>Java For Android</li>
+  <li>Facebook API for Login</li>
+  <li>Firebase</li>
+</ul>
 
 ### Firebase by Google :
 
