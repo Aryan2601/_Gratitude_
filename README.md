@@ -23,10 +23,17 @@
   <li>Firebase</li>
 </ul>
 
-### Firebase by Google :
+<h3>Firebase by Google</h3>
+<ul>
+  <li>Firebase by Google is a very useful tool which helped us a lot to handle the backend part as it made things very easy</li>
+  <li>Using Firebase's ML-Kit we were able to make sure that a user is uploading a correct face using face-verification technique ensuring safety of the person being helped</li>
+ </ul>
 
 
-### Facebook API :
-
+<h3>Facebook API</h3>
+<ul>
+  <li>Facebook API was mainly used for the register part and we saved users into firebase</li>
+  <li>In future we plan to give option to share to facebook as that would be very helpful</li>
+</ul>
 
 ### Screen Shots of our Application :
