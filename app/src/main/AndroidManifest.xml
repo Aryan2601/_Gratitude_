@@ -3,6 +3,7 @@
     package="amhacks.gratitude">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,11 +12,11 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gratitude">
-        <activity android:name=".Activity.Dashboard"></activity>
+        <activity android:name=".Activity.Location_activity"></activity>
+        <activity android:name=".Activity.Dashboard" />
         <activity android:name=".Activity.SetupActivity" />
-        <activity android:name=".Activity.ReadyToHelpActivity"></activity>
+        <activity android:name=".Activity.ReadyToHelpActivity" />
         <activity android:name=".Activity.IntroActivity">
-        
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
