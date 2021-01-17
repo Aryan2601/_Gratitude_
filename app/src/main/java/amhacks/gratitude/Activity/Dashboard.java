@@ -1,20 +1,17 @@
 package amhacks.gratitude.Activity;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
@@ -32,8 +29,7 @@ public class Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
-        mAuth = FirebaseAuth.getInstance();
+	mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid().toString();
 
         firestore = FirebaseFirestore.getInstance();
@@ -48,15 +44,16 @@ public class Dashboard extends AppCompatActivity {
                 }
             }
         });
-
         helperSwitch = (RelativeLayout) findViewById(R.id.helper_switch);
         helpSeekerSwitch = (RelativeLayout) findViewById(R.id.help_seeker_switch);
         helperTxt = (TextView) findViewById(R.id.helper_txt);
         helpSeekerTxt = (TextView) findViewById(R.id.help_seeker_txt);
         helperLayout = (LinearLayout) findViewById(R.id.helper_body);
         helpSeekerLayout = (LinearLayout) findViewById(R.id.help_seeker_body);
-        profileLayout = (LinearLayout) findViewById(R.id.profile_llt);
+	profileLayout = (LinearLayout) findViewById(R.id.profile_llt);
         usernameTxt = (TextView) findViewById(R.id.username_txt);
+
+
 
         helpSeekerSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
