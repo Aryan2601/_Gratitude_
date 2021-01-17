@@ -99,11 +99,16 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/switch_llt"
+        >
+
     <LinearLayout
         android:id="@+id/help_seeker_body"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/switch_llt"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 
@@ -261,15 +266,84 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/helper_body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/switch_llt"
+            android:orientation="vertical"
+            >
 
-    <LinearLayout
-        android:id="@+id/helper_body"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/switch_llt"
-        android:orientation="vertical"
-        >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bills_form_llt"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:backgroundTint="@color/orange"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:visibility="gone"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bill Payment"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/darker_gray"
+                    />
+                <TextView
+                    android:id="@+id/time_txt_bills"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_style"
+                    android:text="Select Time"
+                    android:textSize="18sp"
+                    android:drawableLeft="@drawable/time_icon"
+                    android:drawablePadding="10dp"
+                    android:padding="12dp"
+                    android:layout_marginTop="20dp"
+                    />
+                <TimePicker
+                    android:id="@+id/time_picker_bills"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:headerBackground="@color/orange"
+                    android:numbersSelectorColor="@color/orange"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    />
+
+                <EditText
+                    android:id="@+id/desc_bills"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/edit_text_style"
+                    android:hint="Description"
+                    android:padding="15dp"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <Button
+                    android:id="@+id/post_request_bills"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Post request"
+                    android:background="@drawable/button_style1"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
+    </ScrollView>
+
+
 </RelativeLayout>

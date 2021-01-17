@@ -1,22 +1,36 @@
 package amhacks.gratitude.Activity;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.sql.Time;
+import java.util.HashMap;
 
 import amhacks.gratitude.R;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -24,11 +38,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Dashboard extends AppCompatActivity {
     private RelativeLayout helpSeekerSwitch, helperSwitch;
     private LinearLayout helperLayout, helpSeekerLayout, profileLayout;
-    private TextView helpSeekerTxt, helperTxt, usernameTxt;
-    private String user_type, currentUserID, fullname;
+    private LinearLayout billsFormLayout;
+    private LinearLayout billsLayout;
+    private TextView helpSeekerTxt, helperTxt, usernameTxt, billsTimeTxt;
+    private String user_type, currentUserID, fullname, dest_time, address;
     private FirebaseAuth mAuth;
     private CircleImageView profileView;
     private FirebaseFirestore firestore;
+    private TimePicker billsTimePicker;
+    private Button postBills;
+    private EditText DescET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +64,7 @@ public class Dashboard extends AppCompatActivity {
                 if (value != null)
                 {
                     fullname = value.get("fullname").toString();
+                    address = value.get("address").toString();
                     usernameTxt.setText(fullname);
                     Glide.with(getApplicationContext()).load(value.get("profile_picture").toString()).into(profileView);
                 }
@@ -59,6 +79,86 @@ public class Dashboard extends AppCompatActivity {
         helpSeekerLayout = (LinearLayout) findViewById(R.id.help_seeker_body);
         profileLayout = (LinearLayout) findViewById(R.id.profile_llt);
         usernameTxt = (TextView) findViewById(R.id.username_txt);
+        billsTimePicker = (TimePicker) findViewById(R.id.time_picker_bills);
+        billsTimeTxt = (TextView) findViewById(R.id.time_txt_bills);
+        postBills = (Button) findViewById(R.id.post_request_bills);
+        DescET = (EditText) findViewById(R.id.desc_bills);
+
+        billsTimeTxt.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                billsTimePicker.setVisibility(View.VISIBLE);
+                final String[] time = new String[1];
+
+                billsTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+                    @Override
+                    public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+                        time[0] = billsTimePicker.getHour() + ":" + billsTimePicker.getMinute();
+                        billsTimeTxt.setText(time[0]);
+                        dest_time = time[0];
+                        billsTimePicker.setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
+
+
+        billsLayout = (LinearLayout)findViewById(R.id.bills_llt);
+
+        billsFormLayout = (LinearLayout) findViewById(R.id.bills_form_llt);
+
+        billsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                billsFormLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        postBills.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String desc = DescET.getText().toString();
+
+                if (TextUtils.isEmpty(desc) || TextUtils.isEmpty(dest_time))
+                {
+                    Toast.makeText(Dashboard.this, "Please fill all the details", Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("time",dest_time);
+                    hashMap.put("desc",desc);
+                    hashMap.put("status", "pending");
+                    hashMap.put("poster", currentUserID);
+                    hashMap.put("poster_location",address);
+
+                    firestore.collection("Posts").document().set(hashMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(Dashboard.this, "Posted successfully", Toast.LENGTH_SHORT).show();
+                                        billsFormLayout.setVisibility(View.GONE);
+                                    }
+                                    else
+                                    {
+                                        String err = task.getException().getMessage();
+                                        Toast.makeText(Dashboard.this, err, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                    
+                }
+
+
+
+
+
+            }
+        });
 
 
 
