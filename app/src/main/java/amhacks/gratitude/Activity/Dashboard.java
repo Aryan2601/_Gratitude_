@@ -89,17 +89,6 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 billsTimePicker.setVisibility(View.VISIBLE);
-                final String[] time = new String[1];
-
-                billsTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-                    @Override
-                    public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-                        time[0] = billsTimePicker.getHour() + ":" + billsTimePicker.getMinute();
-                        billsTimeTxt.setText(time[0]);
-                        dest_time = time[0];
-                        billsTimePicker.setVisibility(View.GONE);
-                    }
-                });
             }
         });
 
@@ -116,6 +105,7 @@ public class Dashboard extends AppCompatActivity {
         });
 
         postBills.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 String desc = DescET.getText().toString();
@@ -127,6 +117,7 @@ public class Dashboard extends AppCompatActivity {
 
                 else
                 {
+                    dest_time = billsTimePicker.getHour() + ":" + billsTimePicker.getMinute();
                     HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put("time",dest_time);
                     hashMap.put("desc",desc);
