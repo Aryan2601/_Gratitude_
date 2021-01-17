@@ -7,12 +7,16 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.MediaStore.Images;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -32,12 +36,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.face.FirebaseVisionFace;
+import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector;
+import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
+import java.util.List;
 
 import amhacks.gratitude.R;
 
@@ -124,6 +134,7 @@ public class SetupActivity extends AppCompatActivity {
         {
             imageUri = data.getData();
             ProfileImageView.setImageURI(imageUri);
+            verifyImage();
             up_photo.setVisibility(View.INVISIBLE);
             uploadImage();
 
@@ -142,7 +153,6 @@ public class SetupActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        progressDialog.dismiss();
                         Toast.makeText(SetupActivity.this, "Profile image updated successfully", Toast.LENGTH_SHORT).show();
                         profileStoreRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -210,5 +220,47 @@ public class SetupActivity extends AppCompatActivity {
                     });
 
         }
+    }
+    private void verifyImage(){
+        FirebaseVisionFaceDetectorOptions highAccuracyOpts =
+                new FirebaseVisionFaceDetectorOptions.Builder()
+                        .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
+                        .setLandmarkMode(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
+                        .setClassificationMode(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
+                        .build();
+        ProfileImageView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(ProfileImageView.getDrawingCache());
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
+        ProfileImageView.setDrawingCacheEnabled(false);
+        FirebaseVisionFaceDetector detector = FirebaseVision.getInstance()
+                .getVisionFaceDetector(highAccuracyOpts);
+        Task<List<FirebaseVisionFace>> result =
+                detector.detectInImage(image)
+                        .addOnSuccessListener(
+                                new OnSuccessListener<List<FirebaseVisionFace>>() {
+                                    @Override
+                                    public void onSuccess(List<FirebaseVisionFace> faces) {
+                                        // Task completed successfully
+                                        // ...
+                                        Log.d("MainActivity","Faces detected:"+ Integer.toString(faces.size()));
+                                        if(faces.size()==0){
+                                            Toast.makeText(SetupActivity.this,"Please insert a proper image",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                        else if(faces.size()==1){
+                                            Toast.makeText(SetupActivity.this,"Thank you!",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                })
+                        .addOnFailureListener(
+                                new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Task failed with an exception
+                                        // ...
+                                    }
+                                });
+
     }
 }
