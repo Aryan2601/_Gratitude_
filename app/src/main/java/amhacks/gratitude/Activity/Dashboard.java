@@ -2,6 +2,8 @@ package amhacks.gratitude.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -9,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,6 +26,7 @@ public class Dashboard extends AppCompatActivity {
     private TextView helpSeekerTxt, helperTxt, usernameTxt;
     private String user_type, currentUserID, fullname;
     private FirebaseAuth mAuth;
+    private ImageView profileView;
     private FirebaseFirestore firestore;
 
     @Override
@@ -41,6 +45,7 @@ public class Dashboard extends AppCompatActivity {
                 {
                     fullname = value.get("fullname").toString();
                     usernameTxt.setText(fullname);
+                    Glide.with(getApplicationContext()).load(value.get("profile_picture").toString()).into(profileView);
                 }
             }
         });
@@ -49,8 +54,9 @@ public class Dashboard extends AppCompatActivity {
         helperTxt = (TextView) findViewById(R.id.helper_txt);
         helpSeekerTxt = (TextView) findViewById(R.id.help_seeker_txt);
         helperLayout = (LinearLayout) findViewById(R.id.helper_body);
+        profileView = (ImageView) findViewById(R.id.profile_image_dashboard);
         helpSeekerLayout = (LinearLayout) findViewById(R.id.help_seeker_body);
-	profileLayout = (LinearLayout) findViewById(R.id.profile_llt);
+        profileLayout = (LinearLayout) findViewById(R.id.profile_llt);
         usernameTxt = (TextView) findViewById(R.id.username_txt);
 
 
