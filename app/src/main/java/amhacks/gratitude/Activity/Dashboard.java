@@ -53,7 +53,7 @@ public class Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-	mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid().toString();
 
         firestore = FirebaseFirestore.getInstance();
@@ -109,6 +109,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String desc = DescET.getText().toString();
+                dest_time = billsTimePicker.getHour() + ":" + billsTimePicker.getMinute();
 
                 if (TextUtils.isEmpty(desc) || TextUtils.isEmpty(dest_time))
                 {
@@ -117,7 +118,6 @@ public class Dashboard extends AppCompatActivity {
 
                 else
                 {
-                    dest_time = billsTimePicker.getHour() + ":" + billsTimePicker.getMinute();
                     HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put("time",dest_time);
                     hashMap.put("desc",desc);
@@ -127,11 +127,14 @@ public class Dashboard extends AppCompatActivity {
 
                     firestore.collection("Posts").document().set(hashMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @RequiresApi(api = Build.VERSION_CODES.P)
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful())
                                     {
                                         Toast.makeText(Dashboard.this, "Posted successfully", Toast.LENGTH_SHORT).show();
+                                        billsTimePicker.resetPivot();
+                                        DescET.setText(null);
                                         billsFormLayout.setVisibility(View.GONE);
                                     }
                                     else
