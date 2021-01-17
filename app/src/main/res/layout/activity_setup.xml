@@ -7,174 +7,151 @@
     tools:context=".Activity.SetupActivity"
     android:background="@drawable/bg1_style"
     >
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-<<<<<<< HEAD
-=======
         android:visibility="visible"
         app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
->>>>>>> c549c50ed79c55cc468658623526db07a6054da7
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
 
         >
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:gravity="center"
-            android:orientation="vertical">
-
+            >
             <LinearLayout
                 android:id="@+id/age_llt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:orientation="vertical"
-                android:padding="25dp">
-
+                android:padding="25dp"
+                android:gravity="center"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/billabong"
                     android:text="How old are you ?"
-                    android:textSize="35sp" />
-
+                    android:fontFamily="@font/billabong"
+                    android:textSize="35sp"
+                    />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:gravity="center"
-                    android:orientation="horizontal">
-
+                    >
                     <EditText
                         android:id="@+id/setup_age_et"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
-
+                        android:inputType="number"
+                        />
                     <ImageView
                         android:id="@+id/age_tick"
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/tick_icon"
                         android:layout_marginLeft="20dp"
-                        android:backgroundTint="@android:color/holo_green_light"
                         android:padding="5dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/tick_icon" />
+                        android:backgroundTint="@android:color/holo_green_light"
+                        />
                 </LinearLayout>
 
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/basic_llt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:orientation="vertical"
                 android:padding="20dp"
+                android:gravity="center"
                 android:visibility="gone"
 
                 >
-<<<<<<< HEAD
-=======
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:src="@drawable/profile_picture"
-                android:id="@+id/setup_profile_image"
-                android:backgroundTint="@color/orange"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload Photo"
-                android:id="@+id/up_photo_tv"
-                />
-            </LinearLayout>
->>>>>>> c549c50ed79c55cc468658623526db07a6054da7
-
                 <LinearLayout
                     android:id="@+id/setup_photo_llt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/setup_profile_image"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="180dp"
                         android:layout_height="180dp"
+                        android:src="@drawable/profile_picture"
+                        android:id="@+id/setup_profile_image"
                         android:backgroundTint="@color/orange"
-                        android:src="@drawable/profile_picture" />
-
+                        />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Upload Photo" />
+                        android:text="Upload Photo"
+                        android:id="@+id/up_photo_tv"
+                        />
                 </LinearLayout>
 
                 <EditText
                     android:id="@+id/setup_fullname_et"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/edit_text_style"
+                    android:hint="Full Name"
                     android:drawableLeft="@drawable/person_icon"
                     android:drawablePadding="10dp"
-                    android:hint="Full Name"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/edit_text_style"
+                    />
 
 
                 <Spinner
                     android:id="@+id/setup_gender_et"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:hint="Gender"
+                    android:entries="@array/gender_list"
+                    android:padding="10dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/edit_text_style"
-                    android:entries="@array/gender_list"
-                    android:hint="Gender"
-                    android:padding="10dp" />
+                    />
 
                 <EditText
                     android:id="@+id/setup_phone_et"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/edit_text_style"
+                    android:inputType="phone"
+                    android:hint="Phone"
                     android:drawableLeft="@drawable/phone_icon"
                     android:drawablePadding="10dp"
-                    android:hint="Phone"
-                    android:inputType="phone"
-                    android:padding="10dp" />
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/edit_text_style"
+                    />
+
+                <Button
+                    android:id="@+id/location_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@android:color/holo_blue_dark"
+                    android:layout_marginTop="20dp"
+                    android:text="Get Location"
+                    />
 
                 <Button
                     android:id="@+id/setup_save_button"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
-                    android:text="save profile" />
+                    android:text="save profile"
+                    />
 
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/text_location"
-                android:layout_width="wrap_content"
-                android:layout_height="37dp"
-                android:text="Current Location" />
-
-            <Button
-                android:id="@+id/location_button"
-                android:layout_width="109dp"
-                android:layout_height="50dp"
-                android:text="Get Location" />
-
 
         </LinearLayout>
 

@@ -6,31 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-<<<<<<< HEAD
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-=======
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
->>>>>>> c549c50ed79c55cc468658623526db07a6054da7
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.MediaStore.Images;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,16 +30,12 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.face.FirebaseVisionFace;
@@ -58,14 +45,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.util.HashMap;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Locale;
-=======
->>>>>>> c549c50ed79c55cc468658623526db07a6054da7
-
 import amhacks.gratitude.R;
 
 public class SetupActivity extends AppCompatActivity implements LocationListener {
@@ -75,15 +57,13 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
     private ImageView AgeTick, ProfileImageView;
     private Spinner GenderSpinner;
     private TextView up_photo;
-    private Button SaveButton;
+    private Button SaveButton, button_location;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
-    private String currentUserID, profileURL;
+    private String currentUserID, profileURL, address;
     private Uri imageUri;
     private StorageReference profileStoreRef;
 
-    Button button_location;
-    TextView textView_location;
     LocationManager locationManager;
 
     @Override
@@ -93,7 +73,6 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
 
         setContentView(R.layout.activity_setup);
 
-        textView_location = findViewById(R.id.text_location);
         button_location = findViewById(R.id.location_button);
         
         button_location.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +97,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
         GenderSpinner = (Spinner) findViewById(R.id.setup_gender_et);
         ProfileImageView = (ImageView) findViewById(R.id.setup_profile_image);
         SaveButton = (Button) findViewById(R.id.setup_save_button);
-<<<<<<< HEAD
+
 
         if(ContextCompat.checkSelfPermission(SetupActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED){
@@ -127,9 +106,9 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
                     Manifest.permission.ACCESS_FINE_LOCATION
             },100);
         }
-=======
+
         up_photo = (TextView) findViewById(R.id.up_photo_tv) ;
->>>>>>> c549c50ed79c55cc468658623526db07a6054da7
+
 
 
 
@@ -192,8 +171,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
             imageUri = data.getData();
             ProfileImageView.setImageURI(imageUri);
             verifyImage();
-            up_photo.setVisibility(View.INVISIBLE);
-            uploadImage();
+
 
         }
     }
@@ -243,7 +221,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
         gender = GenderSpinner.getSelectedItem().toString();
         phone = PhoneET.getText().toString();
 
-        if (TextUtils.isEmpty(fullname) || TextUtils.isEmpty(gender) || TextUtils.isEmpty(phone) || imageUri==null)
+        if (TextUtils.isEmpty(fullname) || TextUtils.isEmpty(gender) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(address) || imageUri==null)
         {
             Toast.makeText(this, "All fields are mandatory.", Toast.LENGTH_SHORT).show();
         }
@@ -254,6 +232,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
             hashMap.put("fullname", fullname);
             hashMap.put("gender", gender);
             hashMap.put("phone", phone);
+            hashMap.put("address", address);
             hashMap.put("profile_picture", profileURL);
 
             firestore.collection("Users").document(currentUserID).set(hashMap)
@@ -278,7 +257,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
 
         }
     }
-<<<<<<< HEAD
+
 
 
     @Override
@@ -290,9 +269,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
             Geocoder gecoder = new Geocoder(SetupActivity.this, Locale.getDefault());
             List<Address> addresses = gecoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
 
-            String address = addresses.get(0).getAddressLine(0);
-
-            textView_location.setText(address);
+            address = addresses.get(0).getAddressLine(0);
 
 
         }
@@ -314,8 +291,12 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
 
     @Override
     public void onProviderDisabled(String provider) {
-=======
+
+    }
+
     private void verifyImage(){
+
+
         FirebaseVisionFaceDetectorOptions highAccuracyOpts =
                 new FirebaseVisionFaceDetectorOptions.Builder()
                         .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
@@ -342,7 +323,9 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
 
                                         }
                                         else if(faces.size()==1){
-                                            Toast.makeText(SetupActivity.this,"Thank you!",Toast.LENGTH_SHORT).show();
+
+                                            up_photo.setVisibility(View.INVISIBLE);
+                                            uploadImage();
 
                                         }
                                     }
@@ -355,7 +338,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
                                         // ...
                                     }
                                 });
->>>>>>> c549c50ed79c55cc468658623526db07a6054da7
+
 
     }
 }
