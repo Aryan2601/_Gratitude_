@@ -19,6 +19,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import amhacks.gratitude.R;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Dashboard extends AppCompatActivity {
     private RelativeLayout helpSeekerSwitch, helperSwitch;
@@ -26,7 +27,7 @@ public class Dashboard extends AppCompatActivity {
     private TextView helpSeekerTxt, helperTxt, usernameTxt;
     private String user_type, currentUserID, fullname;
     private FirebaseAuth mAuth;
-    private ImageView profileView;
+    private CircleImageView profileView;
     private FirebaseFirestore firestore;
 
     @Override
@@ -54,7 +55,7 @@ public class Dashboard extends AppCompatActivity {
         helperTxt = (TextView) findViewById(R.id.helper_txt);
         helpSeekerTxt = (TextView) findViewById(R.id.help_seeker_txt);
         helperLayout = (LinearLayout) findViewById(R.id.helper_body);
-        profileView = (ImageView) findViewById(R.id.profile_image_dashboard);
+        profileView = (CircleImageView) findViewById(R.id.profile_image_dashboard);
         helpSeekerLayout = (LinearLayout) findViewById(R.id.help_seeker_body);
         profileLayout = (LinearLayout) findViewById(R.id.profile_llt);
         usernameTxt = (TextView) findViewById(R.id.username_txt);

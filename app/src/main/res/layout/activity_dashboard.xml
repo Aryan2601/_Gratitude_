@@ -37,7 +37,7 @@
             android:gravity="center"
             >
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image_dashboard"
             android:layout_width="50dp"
             android:layout_height="50dp"
