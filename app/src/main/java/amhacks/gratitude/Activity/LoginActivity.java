@@ -225,7 +225,7 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 progressDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, "Authenticated successfully.", Toast.LENGTH_SHORT).show();
-                                Intent dashIntent = new Intent(LoginActivity.this, Dashboard.class);
+                                Intent dashIntent = new Intent(LoginActivity.this, SetupActivity.class);
                                 dashIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(dashIntent);
                             }

@@ -11,17 +11,25 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+=======
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+>>>>>>> c549c50ed79c55cc468658623526db07a6054da7
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore.Images;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +49,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.face.FirebaseVisionFace;
+import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector;
+import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -48,7 +61,10 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Locale;
+=======
+>>>>>>> c549c50ed79c55cc468658623526db07a6054da7
 
 import amhacks.gratitude.R;
 
@@ -58,6 +74,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
     private EditText AgeET, FullNameET, PhoneET;
     private ImageView AgeTick, ProfileImageView;
     private Spinner GenderSpinner;
+    private TextView up_photo;
     private Button SaveButton;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
@@ -101,6 +118,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
         GenderSpinner = (Spinner) findViewById(R.id.setup_gender_et);
         ProfileImageView = (ImageView) findViewById(R.id.setup_profile_image);
         SaveButton = (Button) findViewById(R.id.setup_save_button);
+<<<<<<< HEAD
 
         if(ContextCompat.checkSelfPermission(SetupActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED){
@@ -109,6 +127,9 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
                     Manifest.permission.ACCESS_FINE_LOCATION
             },100);
         }
+=======
+        up_photo = (TextView) findViewById(R.id.up_photo_tv) ;
+>>>>>>> c549c50ed79c55cc468658623526db07a6054da7
 
 
 
@@ -155,8 +176,10 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
     }
 
     private void selectImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                Images.Media.INTERNAL_CONTENT_URI);
+
+       intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 1);
     }
@@ -168,6 +191,8 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
         {
             imageUri = data.getData();
             ProfileImageView.setImageURI(imageUri);
+            verifyImage();
+            up_photo.setVisibility(View.INVISIBLE);
             uploadImage();
 
         }
@@ -185,7 +210,6 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        progressDialog.dismiss();
                         Toast.makeText(SetupActivity.this, "Profile image updated successfully", Toast.LENGTH_SHORT).show();
                         profileStoreRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -254,6 +278,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
 
         }
     }
+<<<<<<< HEAD
 
 
     @Override
@@ -289,6 +314,48 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
 
     @Override
     public void onProviderDisabled(String provider) {
+=======
+    private void verifyImage(){
+        FirebaseVisionFaceDetectorOptions highAccuracyOpts =
+                new FirebaseVisionFaceDetectorOptions.Builder()
+                        .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
+                        .setLandmarkMode(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
+                        .setClassificationMode(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
+                        .build();
+        ProfileImageView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(ProfileImageView.getDrawingCache());
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
+        ProfileImageView.setDrawingCacheEnabled(false);
+        FirebaseVisionFaceDetector detector = FirebaseVision.getInstance()
+                .getVisionFaceDetector(highAccuracyOpts);
+        Task<List<FirebaseVisionFace>> result =
+                detector.detectInImage(image)
+                        .addOnSuccessListener(
+                                new OnSuccessListener<List<FirebaseVisionFace>>() {
+                                    @Override
+                                    public void onSuccess(List<FirebaseVisionFace> faces) {
+                                        // Task completed successfully
+                                        // ...
+                                        Log.d("MainActivity","Faces detected:"+ Integer.toString(faces.size()));
+                                        if(faces.size()==0){
+                                            Toast.makeText(SetupActivity.this,"Please insert a proper image",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                        else if(faces.size()==1){
+                                            Toast.makeText(SetupActivity.this,"Thank you!",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                })
+                        .addOnFailureListener(
+                                new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Task failed with an exception
+                                        // ...
+                                    }
+                                });
+>>>>>>> c549c50ed79c55cc468658623526db07a6054da7
 
     }
 }

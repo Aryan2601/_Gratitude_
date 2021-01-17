@@ -40,8 +40,12 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.airbnb.android:lottie:3.4.1'
-
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
+    // If you want to detect face contours (landmark detection and classification
+    // don't require this additional model):
+    implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.1'
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+    implementation 'com.facebook.android:facebook-share:[5,6)'
 }

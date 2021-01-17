@@ -5,6 +5,9 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
@@ -28,6 +31,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc6e2ab5-7b6e-4947-b170-6dfb9821b65f" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
@@ -47,6 +51,25 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/amhacks/gratitude/Activity/SetupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/amhacks/gratitude/Activity/SetupActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_setup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_setup.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Gratitude.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Gratitude.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/amhacks/gratitude/Activity/SetupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/amhacks/gratitude/Activity/SetupActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_setup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_setup.xml" afterDir="false" />
+>>>>>>> c549c50ed79c55cc468658623526db07a6054da7
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,6 +210,7 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state x="480" y="288" width="950" height="537" key="#PSD" timestamp="1610818715592">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -212,20 +236,28 @@
     </state>
     <state x="743" y="311" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1610820674667" />
     <state width="1874" height="275" key="GridCell.Tab.0.bottom" timestamp="1610797562778">
+=======
+    <state x="743" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1610823452338">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="275" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1610797562778" />
-    <state width="1874" height="275" key="GridCell.Tab.0.center" timestamp="1610797562777">
+    <state x="743" y="311" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1610823452338" />
+    <state width="1874" height="275" key="GridCell.Tab.0.bottom" timestamp="1610824904302">
+>>>>>>> c549c50ed79c55cc468658623526db07a6054da7
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="275" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1610797562777" />
-    <state width="1874" height="275" key="GridCell.Tab.0.left" timestamp="1610797562776">
+    <state width="1874" height="275" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1610824904302" />
+    <state width="1874" height="275" key="GridCell.Tab.0.center" timestamp="1610824904302">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="275" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1610797562776" />
-    <state width="1874" height="275" key="GridCell.Tab.0.right" timestamp="1610797562777">
+    <state width="1874" height="275" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1610824904302" />
+    <state width="1874" height="275" key="GridCell.Tab.0.left" timestamp="1610824904302">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
+    <state width="1874" height="275" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1610824904302" />
+    <state width="1874" height="275" key="GridCell.Tab.0.right" timestamp="1610824904302">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+<<<<<<< HEAD
     <state width="1874" height="275" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1610797562777" />
     <state x="464" y="188" width="992" height="737" key="SettingsEditor" timestamp="1610818963848">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -239,5 +271,8 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1610818625050" />
+=======
+    <state width="1874" height="275" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1610824904302" />
+>>>>>>> c549c50ed79c55cc468658623526db07a6054da7
   </component>
 </project>
