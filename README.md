@@ -1,7 +1,8 @@
 # Gratitude
 
 
-### Why are we Building this Application ?
+<h3>What does this app do</h3>
+<p>Gratitude is an app that is for the old and the needy people. During the period of CoVID a lot of old people and handicapped ones suffered a lot and they couldn't buy the basic amenities required as well because of their health problems. Gratitude is an app that tries to solve this problem by making a system where volunteers could come and help these people in their day-to-day activities.</p>
 
 
 ### WorkFlow of our Application :
