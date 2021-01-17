@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ProfileViewActivity"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_view_header"
+        android:background="@color/orange"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="83dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/billabong"
+            android:padding="10dp"
+            android:text="Profile"
+            android:textColor="@color/white"
+            android:textSize="60sp"
+            android:layout_marginBottom="20dp"
+            />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_view_header"
+        >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_view_image"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/profile_picture"
+            android:layout_marginTop="30dp"
+            />
+        <TextView
+            android:id="@+id/profile_view_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Karma points - 1200"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="left"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/com_facebook_blue"
+            >
+
+            <TextView
+                android:id="@+id/profile_view_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email address"
+                android:drawableLeft="@drawable/email_icon"
+                android:drawablePadding="10dp"
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <TextView
+                android:id="@+id/profile_view_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:drawableLeft="@drawable/phone_icon"
+                android:drawablePadding="10dp"
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <TextView
+                android:id="@+id/profile_view_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

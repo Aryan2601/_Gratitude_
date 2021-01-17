@@ -111,6 +111,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+        <Button
+            android:id="@+id/view_helpers_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View helpers"
+            android:background="@drawable/edit_text_style"
+            android:textColor="@color/darker_gray"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
 
         <HorizontalScrollView
             android:layout_width="match_parent"

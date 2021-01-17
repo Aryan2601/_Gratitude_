@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -121,6 +122,14 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 billsTimePicker.setVisibility(View.VISIBLE);
+            }
+        });
+
+        profileLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent profileIntent = new Intent(Dashboard.this, ProfileViewActivity.class);
+                startActivity(profileIntent);
             }
         });
 

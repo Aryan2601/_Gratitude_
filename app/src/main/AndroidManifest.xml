@@ -3,7 +3,6 @@
     package="amhacks.gratitude">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -14,6 +13,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gratitude">
+        <activity android:name=".Activity.ProfileViewActivity"></activity>
         <activity android:name=".Activity.Dashboard" />
         <activity android:name=".Activity.SetupActivity" />
         <activity android:name=".Activity.ReadyToHelpActivity" />
