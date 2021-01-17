@@ -295,6 +295,7 @@ public class LoginActivity extends AppCompatActivity {
                                         {
                                             progressDialog.dismiss();
                                             Intent setupIntent = new Intent(LoginActivity.this, SetupActivity.class);
+                                            setupIntent.putExtra("email",email);
                                             setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(setupIntent);
                                         }

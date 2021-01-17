@@ -229,11 +229,14 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
         else
         {
 
+            String email = getIntent().getStringExtra("email");
+
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("fullname", fullname);
             hashMap.put("gender", gender);
             hashMap.put("phone", phone);
             hashMap.put("address", address);
+            hashMap.put("email",email);
             hashMap.put("profile_picture", profileURL);
 
             firestore.collection("Users").document(currentUserID).set(hashMap)
