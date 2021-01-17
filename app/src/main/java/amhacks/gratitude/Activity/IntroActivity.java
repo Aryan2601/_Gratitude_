@@ -45,9 +45,7 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 checkLogin();
-                Intent loginIntent = new Intent(IntroActivity.this, LoginActivity.class);
-                loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(loginIntent);
+
             }
 
             @Override
@@ -73,6 +71,12 @@ public class IntroActivity extends AppCompatActivity {
             Intent dashIntent = new Intent(IntroActivity.this, Dashboard.class);
             dashIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(dashIntent);
+        }
+        else
+        {
+            Intent loginIntent = new Intent(IntroActivity.this, LoginActivity.class);
+            loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(loginIntent);
         }
     }
 }
